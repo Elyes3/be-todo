@@ -17,16 +17,23 @@ class Todo
     #[MongoDB\Field(type: 'string')]
     #[Assert\NotBlank]
     protected string $description;
-
+    #[MongoDB\Field(type: 'int')]
+    #[Assert\NotBlank]
+    protected int $millis;
     // Getters and setters
     public function getId(): string{
         return $this->id;
-
     }
     public function getDescription(): string{
         return $this->description;
     }
     public function setDescription(string $description): void{
         $this->description = $description;
+    }
+    public function getMillis(): int{
+        return $this->millis;
+    }
+    public function setMillis(int $millis): void{
+        $this->millis = $millis;
     }
 }
