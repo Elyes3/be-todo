@@ -42,12 +42,13 @@ class TodosController extends AbstractFOSRestController
       $todo = new Todo();
       $todo->setDescription($data["description"]);
       $todo->setMillis($data["millis"]);
+      $todo->setCompleted(false);
       // persist data
       $dm->persist($todo);
       $dm->flush();
       return $this->json(["todo" => $todo, "message" => "Todo created successfully"], 201, []);
     }
-    #[Route('/todos/{id}', name: 'put_todo', methods:['PUT'] )]
+    #[Route('/todos/{id}/description', name: 'update_description', methods:['PATCH'] )]
     public function updateTodo(Request $request, DocumentManager $dm, string $id): JsonResponse{
       $data = json_decode($request->getContent(), true);
       // Only the description can be updated the millis isn't designed to be updated
@@ -75,6 +76,23 @@ class TodosController extends AbstractFOSRestController
       $dm->remove($currentTodo);
       $dm->flush();
       return $this->json(["todo" => $currentTodo, "message" => "Todo deleted successfully"], 200, []);
+    }
+    #[Route('/todos/{id}/completed', name: 'complete-todo', methods:['PATCH'] )]
+    public function completeTodo(Request $request, DocumentManager $dm, string $id){
+      $data = json_decode($request->getContent(), true);
+      // Only the description can be updated the millis isn't designed to be updated
+
+      $criteria['id'] = $id;
+      // Find the todo with the specified id in params
+      $currentTodo = $dm ->getRepository(Todo::class)->find($criteria);
+      if (!$currentTodo){
+        // Check can also be done through CreateNotFoundException
+        return new JsonResponse(["error" => "The todo with the referenced id does not exist"],404);
+      }
+      // Change the description if it exists else keep the same description
+      $currentTodo->setCompleted($data["completed"] ?? $currentTodo->getCompleted());
+      $dm->flush();
+      return $this->json(["todo" => $currentTodo, "message" => "Todo updated successfully"],200,[]);
     }
   }
 

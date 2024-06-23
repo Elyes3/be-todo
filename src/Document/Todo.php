@@ -20,7 +20,11 @@ class Todo
     #[MongoDB\Field(type: 'int')]
     #[Assert\NotBlank]
     protected int $millis;
+    #[MongoDB\Field(type: 'bool')]
+    #[Assert\NotBlank]
+    protected int $completed;
     // Getters and setters
+
     public function getId(): string{
         return $this->id;
     }
@@ -35,5 +39,11 @@ class Todo
     }
     public function setMillis(int $millis): void{
         $this->millis = $millis;
+    }
+    public function getCompleted(): bool{
+        return $this->completed;
+    }
+    public function setCompleted(bool $completed): void{
+        $this->completed = $completed;
     }
 }
