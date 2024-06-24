@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    environment:
+      SYMFONY_ENV: dev
+    ports:
+      - "8000:8000"
+    networks:
+      - symfony_net
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest   # Specify the MongoDB image
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - symfony_net
+
+networks:
+  symfony_net:
+
+volumes:
+  mongo_data:
