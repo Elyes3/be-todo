@@ -5,7 +5,7 @@ Todolist app with Symfony
 ## Installation
 You need to have `PHP`, `Composer`, `Symfony` and `MongoDB` set up in your environment.
 
-First of all, this project needs to be cloned either by using Git or by downloading the ZIP and extracting it to your environment (Clone URL: https://github.com/Elyes3/be-todo.git).
+First of all, this project needs to be cloned either by using `Git` or by downloading the ZIP and extracting it to your environment (Clone URL: https://github.com/Elyes3/be-todo.git).
 
 Right after that, the dependencies of the project should be installed through the command:
 
@@ -16,7 +16,7 @@ After that you need to run the project:
 ```symfony serve```.
 ## Explanation
 
-- This app makes use of fos_rest in order to expose the APIs through the REST architectural style.
+- This app makes use of `fos_rest` in order to expose the APIs through the `REST` architectural style.
 
 - The environment variables are pushed within this GitHub Repo (not a best practice) in order to make the setup of the project simpler.
 
@@ -25,18 +25,18 @@ After that you need to run the project:
 
 - 5 REST API endpoints are provided within this app:
 
-```GET http://<ip>/api/todos?millis={millis}```: Get request that returns all the todos for the millis param passed in. The millis param represents a date converted in milliseconds.
+```GET http://<ip>/api/todos?millis={millis}```: Get request that returns all the todos for the `millis` param passed in. The millis param represents a date converted in milliseconds.
 
-```POST http://<ip>/api/todos```: Post request that allows the creation of a todo. This request requires a JSON object in its body that contains a `description` field , a `completed` field and the `millis` field.
+```POST http://<ip>/api/todos```: Post request that allows the creation of a todo. This request requires a `JSON` object in its body that contains a `description` field , a `completed` field and the `millis` field.
 
 ```PATCH http://<ip>/api/todos/{id}/description```: Patch request that makes a partial update on the `description` field of a specific todo.
 
 ```PATCH http://<ip>/api/todos/{id}/completed```: Patch request that makes a partial update on the `completed` field of a specific todo.
 
-```DELETE http://<ip>/api/todos/{id}```: Delete request that deletes a specific todo through its id.
+```DELETE http://<ip>/api/todos/{id}```: Delete request that deletes a specific todo through its `id`.
 
 ## Setup Docker Containers 
-- For a windows and Mac Environment, Docker Desktop must be installed:
+- For `Windows` and `Mac`, `Docker Desktop` must be installed:
 
 - On your terminal, after changing your directory on the root of this project, after that run:
 
